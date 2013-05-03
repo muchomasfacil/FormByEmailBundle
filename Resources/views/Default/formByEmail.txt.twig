@@ -1,0 +1,12 @@
+{{ subject }}
+================================================================================
+
+{% for item in form %}
+{% if item.getName not in params.skip_fields %}
+
+{{ item.getName|trans({}, params.translation_domain, params.locale) }}:
+{{ item.getData }}
+
+{% endif %}
+{% endfor %}
+
