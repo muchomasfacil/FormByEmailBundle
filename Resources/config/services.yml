@@ -1,26 +1,25 @@
 parameters:
-    mucho_mas_facil_form_by_email.definitions:
+    mucho_mas_facil_form_by_email.class: MuchoMasFacil\FormByEmailBundle\Service\FormByEmail
+    mucho_mas_facil_form_by_email.definitions: 
         default:
             template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig
             is_html: false        
             locale: ~
             translation_domain: messages
             skip_fields: [_token]
-            sender_setFrom:  []
-                # - { email: 'miburro10@yahoo.es', name: 'Alvaro Marcos'}
-                # - { email: 'miburro20@yahoo.es', name: 'Alvaro Marcos'}
-            # sender_setSender: ~
-            # sender_setReturnPath: ~
-            # sender_setReplyTo: ~
-            # recipients_setTo: []
-            # recipients_setCc: []
-            # recipients_setBcc: []
-            # recipients_addTo: []
-            # recipients_addCc: []
-            # recipients_addBcc: []
+            sender_setFrom: []
+            sender_setSender: ~ 
+            sender_setReturnPath: ~ 
+            sender_setReplyTo: ~ 
+            recipients_setTo: []
+            recipients_setCc: []
+            recipients_setBcc: []
+            recipients_addTo: []
+            recipients_addCc: []
+            recipients_addBcc: []
         
 
 services:
-    mucho_mas_facil_form_by_email:
-        class: MuchoMasFacil\FormByEmailBundle\Service\FormByEmail
-        arguments: ["%mucho_mas_facil_form_by_email.definitions%", "@mailer", "@templating"]
+    mmf_form_by_email:
+        class: "%mucho_mas_facil_form_by_email.class%"
+        arguments: ["@service_container"]

@@ -4,52 +4,33 @@ namespace MuchoMasFacil\FormByEmailBundle\Service;
 
 class FormByEmail
 {
-    private $templating;
+    private $container;
     
-    private $mailer;
+    private $definitions = array();
 
-    private $default_params = array(
-        'template' => 'MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig'
-        , 'is_html' => false        
-        , 'locale' => null
-        , 'translation_domain' => 'messages'
-        , 'skip_fields' => array('_token')
-        , 'sender_setFrom' => array()
-        , 'sender_setSender' => null
-        , 'sender_setReturnPath' => null
-        , 'sender_setReplyTo' => null
-        , 'recipients_setTo' => null
-        , 'recipients_setCc' => null
-        , 'recipients_setBcc' => null
-        , 'recipients_addTo' => array()
-        , 'recipients_addCc' => array()
-        , 'recipients_addBcc' => array()
-        
-    );
-
-    function __construct($definitions, $mailer, $templating) {
-        var_export($definitions);
-        die('hoola');
-        $this->templating = $templating;
-        $this->mailer = $mailer;
+    function __construct($container) {
+        $this->container = $container;
+        $this->definitions =  $this->container->getParameter('mucho_mas_facil_form_by_email.definitions');    
+        //var_export($this->definitions);
+        //die();
     }
     
     public function sendMail($body, $subject, $definition_to_load = null, $params = array())
     {
-        $result = true;
-
-        $params = $this->mergeParams($definition_to_load, $params);
-
+        $result = false;
+        $params = $this->mergeParams($definition_to_load, $params);        
         $message = \Swift_Message::newInstance()
             ->setFrom($params['sender_setFrom'])
             ->setSender($params['sender_setSender'])
             ->setReturnPath($params['sender_setReturnPath'])
-            ->setReplyTo($params['sender_setReplyTo'])
+            ->setReplyTo($params['sender_setReplyTo'])        
+            ->setSubject($subject)
+            ->setBody($body, ($params['is_html'])? 'text/html' : 'text/plain')
             ->setTo($params['recipients_setTo'])
             ->setCc($params['recipients_setCc'])
             ->setBcc($params['recipients_setBcc'])
-            ->setSubject($subject)
-            ->setBody($body, ($params['is_html'])? 'text/html' : 'text/plain');
+        ;
+
         foreach ($params['recipients_addTo'] as $entry) {
             $message->addTo(key($entry), current($entry));
         }        
@@ -61,7 +42,7 @@ class FormByEmail
         }
 
         try {
-            $sended_mails = $this->mailer->send($message);
+            $sended_mails = $this->container->get('mailer')->send($message);
             if ($sended_mails) {
                 $result = true;
                 $flash = array('type' => 'error', 'message' =>'success.email_sent');
@@ -83,26 +64,31 @@ class FormByEmail
         if (!is_null($params['locale'])) {
             $params['locale'] = $locale;
         }
-        $body = $this->templating->render($params['template'], array('subject' => $subject, 'form' => $form, 'params' => $params));
+        $body = $this->container->get('templating')->render($params['template'], array('subject' => $subject, 'form' => $form, 'params' => $params));
 
         return $this->sendMail($body, $subject, null, $params);
     }
 
-    public function formByEmail($request, $form, $subject, $definition_to_load = null, $params = array())
+    public function formByEmail($form, $empty_form_data, $subject, $definition_to_load = null, $params = array())
     {
         $result = false;
         $flash = null;
 
+        $request = $this->container->get('request');
         $params = $this->mergeParams($definition_to_load, $params);
         if (is_null($params['locale'])) {
             $params['locale'] = $request->getLocale();
         }        
 
+        $cloned_empty_form = clone $form;
+        $cloned_empty_form->setData($empty_form_data);
+
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {                
+                //this returns $result & $flash
                 extract($this->sendBindedformByEmail(null, $form, $subject, null, $params));      
-                //$form = ;                            
+                $form = $cloned_empty_form;
             }
             else {
                 $flash = array('type' => 'error', 'message' =>'error.form_invalid');
@@ -121,13 +107,15 @@ class FormByEmail
         if (isset($params['skip_merge_params'])) {
             return $params;
         }
-        $default_params = $this->default_params;
-        $definition_params = array();
-        if (!is_null($definition_to_load)) {
-            //load definition params
+        $default_params = $this->definitions['default'];
+        $definition_loaded_params = array();
+        if (isset($this->definitions[$definition_to_load])) {
+            $definition_loaded_params = $this->definitions[$definition_to_load];
         }
+                        
         $params['skip_merge_params'] = true; //this not to run mergeParams more than once
-        return array_merge($this->default_params, $definition_params, $params);
+
+        return array_merge($default_params, $definition_loaded_params, $params);
     }
     
 }
