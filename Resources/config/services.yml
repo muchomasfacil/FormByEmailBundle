@@ -2,11 +2,12 @@ parameters:
     mucho_mas_facil_form_by_email.class: MuchoMasFacil\FormByEmailBundle\Service\FormByEmail
     mucho_mas_facil_form_by_email.definitions: 
         default:
-            template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig
-            is_html: false        
+            template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig                
             locale: ~
             translation_domain: messages
             skip_fields: [_token]
+            #below those used by sendMail itself
+            is_html: false    
             sender_setFrom: []
             sender_setSender: ~ 
             sender_setReturnPath: ~ 
