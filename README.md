@@ -1,5 +1,10 @@
 # FormByEmailBundle
-Nothing new under the sun but this bundle, greatly simplifies sending your Symfony2 forms by email
+Nothing new under the sun. This bundle tryes to simplify sending your Symfony2 forms by email.
+It will help to:
+- send forms by email (even if you use ajax)
+- send mails rendered (or not) by a templa)
+
+Fell free to send us your opinion, or issues.
 
 ## Install bundle with composer.json
 Add to your composer.json in the repositories (create it if not exist) section:
