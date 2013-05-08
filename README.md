@@ -260,102 +260,88 @@ public function sendMailAction()
 
 ## Parameters reference
 
+Take a look at default values in [./Resources/config/services.yml]
+
 <table>
     <tr>
         <th>Param</th>
         <th>Type</th>
-        <th>Default</th>
         <th>Reference</th>
     </tr>
 
 <tr>
     <td>template</td>
     <td>string</td>
-    <td>MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig</td>
     <td>Email render template (take default template as a reference for your custom templates)</td>
 </tr>
 <tr>    
     <td>is_html        
     <td>boolean</td>
-    <td>false</td>
     <td>If sets email body content-type to text/html or text/plain</td>
 </tr>
 <tr>    
     <td>locale
     <td>string</td>
-    <td>~</td>
     <td>By default will use request locale. If set forces locale</td>
 </tr>
 <tr>    
     <td>translation_domain
     <td>string</td>
-    <td>messages</td>
     <td>Bundle translation domain [http://symfony.com/doc/current/book/translation.html]</td>
 </tr>
 <tr>    
     <td>skip_fields
     <td>array</td>
-    <td>[_token]</td>
     <td>Form fields that will not show in the email</td>
 </tr>
 <tr>    
     <td>sender_setFrom
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#setting-the-from-address]</td>
 </tr>
 <tr>    
     <td>sender_setSender
     <td>string: single email address</td>
-    <td>~</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#setting-the-sender-address]</td>
 </tr>
 <tr>    
     <td>sender_setReturnPath
     <td>string: single email address</td>
-    <td>~</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#setting-the-return-path-bounce-address]</td>
 </tr>
 <tr>    
     <td>sender_setReplyTo 
     <td>string: single email address</td>
-    <td>~</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#setting-the-return-path-bounce-address]</td>
 </tr>
 <tr>    
     <td>recipients_setTo
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>
 <tr>    
     <td>recipients_setCc
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>
 <tr>    
     <td>recipients_setBcc
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>
 <tr>    
     <td>recipients_addTo
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>
 <tr>    
     <td>recipients_addCc
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>
 <tr>    
     <td>recipients_addBcc
     <td>array</td>
-    <td>[]</td>
     <td>Look at SwiftMailer reference [http://swiftmailer.org/docs/messages.html#adding-recipients-to-your-message]</td>
 </tr>    
 </table>
