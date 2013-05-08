@@ -1,5 +1,5 @@
 {% if flash is not empty %}
 <div class="alert{{ flash.type ? ' alert-'~ flash.type : '' }} fade in alert-block">
-    {{ flash.message }}
+    {{ flash.message|trans }}
 </div>
 {% endif %}
