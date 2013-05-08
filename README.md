@@ -1,8 +1,8 @@
 # FormByEmailBundle
-Nothing new under the sun. This bundle tryes to simplify sending your Symfony2 forms by email.
-It will help to:
+Nothing new under the sun. This bundle just tryes to simplify sending your Symfony2 forms by email.
+It will help if you need to:
 - send forms by email (even if you use ajax)
-- send mails rendered (or not) by a templa)
+- just send emails in an easy way
 
 Fell free to send us your opinion, or issues.
 
@@ -250,7 +250,11 @@ public function sendMailAction()
     $body = '
         ...
     ';
+    
+    //or may be
+    //$body = $this->container->get('templating')->render('my_template', array('my_params' ...));
 
+    
     $form_by_email = $this->container->get('mmf_form_by_email');    
 
     $params = array(
