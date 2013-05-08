@@ -169,6 +169,7 @@ public function contactAction(Request $request)
 ### Using Ajax
 Your twig template should be something like (we use jquey in these example, you must include it in your template)
 > may be [jquery Form Plugin](http://www.malsup.com/jquery/form/) is usefull
+
 ```
 <div id="form_by_email_target">
 {{ include('MuchoMasFacilFormByEmailBundle:Default:flash.html.twig', {'flash': flash}) }}
