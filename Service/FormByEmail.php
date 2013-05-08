@@ -45,7 +45,7 @@ class FormByEmail
             $sended_mails = $this->container->get('mailer')->send($message);
             if ($sended_mails) {
                 $result = true;
-                $flash = array('type' => 'error', 'message' =>'success.email_sent');
+                $flash = array('type' => 'success', 'message' =>'success.email_sent');
             }
             else{
                 $flash = array('type' => 'error', 'message' =>'error.email_not_sent');
