@@ -152,8 +152,45 @@ public function contactAction(Request $request)
             ),
         ))
         ->getForm();
+    
+    $definition_to_load = '...'; //whatever definition you wrote in your app/config/config.yml;
+    $form_by_email = $this->container->get('mmf_form_by_email');
+    list($result, $flash, $form) = $form_by_email->formByEmail($form, $my_entity, $subject, $definition_to_load);
 
+    return $this->render('MuchoMasFacilTestBundle:Default:index.html.twig', array('flash' => $flash, 'form' => $form, ...));
 }
+```
+
+### Using Ajax
+Your twig template should be something like (we use jquey in these example, you must include it in your template)
+```
+<div id="form_by_email_target">
+{{ include('MuchoMasFacilFormByEmailBundle:Default:flash.html.twig', {'flash': flash}) }}
+ 
+<form id="form_by_email_form" {{ form_enctype(form) }} method="post" action="{{ path(your_form_controller_action) }}">
+    {{ form_widget(form) }}
+
+    <input type="button" value="send">
+</form>
+
+</div>
+<script>
+$(document).ready(function() {
+    $('#form_by_email_target').submit(function(event){        
+        event.preventDefault();    // prevent form submission
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function(data) {
+                $('#form_by_email_target').html(data);
+            }
+        })        
+        return false;
+    });
+});
+</script>
 ```
 
 ### More control about the form treatment
@@ -233,7 +270,7 @@ public function sendMailAction()
 
 <tr>
     <td>template</td>
-    <td>string<td>
+    <td>string</td>
     <td>MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig</td>
     <td>Email render template (take default template as a reference for your custom templates)</td>
 </tr>
