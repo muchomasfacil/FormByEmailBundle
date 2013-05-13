@@ -84,8 +84,7 @@ class FormByEmail
         $cloned_empty_form->setData($empty_form_data);
 
         if ($request->getMethod() == 'POST') {
-            //$form->handleRequest($request);
-            $form->bind($request);
+            $form->handleRequest($request);
             if ($form->isValid()) {                
                 //this returns $result & $flash
                 extract($this->sendBindedformByEmail(null, $form, $subject, null, $params));      
