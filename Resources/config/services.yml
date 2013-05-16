@@ -8,16 +8,16 @@ parameters:
             skip_fields: [_token]
             #below those used by sendMail itself
             is_html: false    
-            sender_setFrom: []
+            sender_setFrom: {}
             sender_setSender: ~ 
             sender_setReturnPath: ~ 
             sender_setReplyTo: ~ 
-            recipients_setTo: []
-            recipients_setCc: []
-            recipients_setBcc: []
-            recipients_addTo: []
-            recipients_addCc: []
-            recipients_addBcc: []
+            recipients_setTo: {}
+            recipients_setCc: {}
+            recipients_setBcc: {}
+            recipients_addTo: {}
+            recipients_addCc: {}
+            recipients_addBcc: {}
         
 
 services:

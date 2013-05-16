@@ -4,7 +4,12 @@
 {% if item.getName not in params.skip_fields %}
 <p>
 <strong>{{ item.getName|trans({}, params.translation_domain, params.locale) }}:</strong>
-<br />{{ item.data() }}
+<br />{% if item.getData.getTimestamp is defined %}
+    {{ item.getData|date() }}
+{% else %}
+    {{ item.getData }}
+{% endif %}
+
 </p>
 {% endif %}
 {% endfor %}

@@ -1,5 +1,13 @@
 {% if flash is not empty %}
 <div class="alert{{ flash.type ? ' alert-'~ flash.type : '' }} fade in alert-block">
-    {{ flash.message|trans }}
+   {{ flash.message|trans }}
 </div>
+{% endif %}
+
+{% if app.session.started %}
+    {% for flash in app.session.flashbag.get('flash') %}
+        <div class="alert{{ flash.type ? ' alert-'~ flash.type : '' }} fade in alert-block">
+           {{ flash.message|trans }}
+        </div>
+    {% endfor %}
 {% endif %}

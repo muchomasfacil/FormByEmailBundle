@@ -26,13 +26,11 @@ class MuchoMasFacilFormByEmailExtension extends Extension
         $parameter_configs[] = array(
             'definitions'  => $container->getParameter('mucho_mas_facil_form_by_email.definitions'),            
             );
-
         //now take configurations
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         //and add them to our list
         $parameter_configs[] = $config;
-
         $final_config = $this->processConfiguration($configuration, $parameter_configs);
 
         $container->setParameter('mucho_mas_facil_form_by_email', $final_config['definitions']); 

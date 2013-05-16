@@ -10,12 +10,10 @@ class FormByEmail
 
     function __construct($container) {
         $this->container = $container;
-        $this->definitions =  $this->container->getParameter('mucho_mas_facil_form_by_email.definitions');    
-        //var_export($this->definitions);
-        //die();
+        $this->definitions =  $this->container->getParameter('mucho_mas_facil_form_by_email');    
     }
     
-    public function sendMail($body, $subject, $definition_to_load = null, $params = array())
+    public function sendEmail($body, $subject, $definition_to_load = null, $params = array())
     {
         $result = false;
         $params = $this->mergeParams($definition_to_load, $params);        
@@ -30,7 +28,7 @@ class FormByEmail
             ->setCc($params['recipients_setCc'])
             ->setBcc($params['recipients_setBcc'])
         ;
-
+        
         foreach ($params['recipients_addTo'] as $entry) {
             $message->addTo(key($entry), current($entry));
         }        
@@ -40,7 +38,6 @@ class FormByEmail
         foreach ($params['recipients_addBcc'] as $entry) {            
             $message->addBcc(key($entry), current($entry));
         }
-
         try {
             $sended_mails = $this->container->get('mailer')->send($message);
             if ($sended_mails) {
@@ -66,13 +63,22 @@ class FormByEmail
         }
         $body = $this->container->get('templating')->render($params['template'], array('subject' => $subject, 'form' => $form, 'params' => $params));
 
-        return $this->sendMail($body, $subject, null, $params);
+        return $this->sendEmail($body, $subject, null, $params);
     }
 
-    public function formByEmail($form, $empty_form_data, $subject, $definition_to_load = null, $params = array())
+    public function sendFormByEmail($form, $empty_form_data, $subject, $definition_to_load = null, $params = array())
     {
+        if ($form instanceof \Symfony\Component\Form\AbstractType ) {
+            $form = $this->container->get('form.factory')->create($form, $empty_form_data);
+        } 
+        elseif ($form instanceof \Symfony\Component\Form\Form) { 
+            //do nothing we have the form...
+        }
+        else {
+            throw new \Exception('$form must be a class of either Symfony\Component\Form\Form or Symfony\Component\Form\AbstractType');  
+        }
         $result = false;
-        $flash = null;
+        $flash = array();
 
         $request = $this->container->get('request');
         $params = $this->mergeParams($definition_to_load, $params);
@@ -90,16 +96,17 @@ class FormByEmail
                 extract($this->sendBindedformByEmail(null, $form, $subject, null, $params));      
                 $form = $cloned_empty_form;
             }
-            else {
+            else if ($form->isSubmitted()){
                 $flash = array('type' => 'error', 'message' =>'error.form_invalid');
             }
         }
-            
+
         return array(
             'result' => $result
             ,'flash' => $flash
-            ,'form' => $form->createView()            
+            ,'form_view' => $form->createView()            
         );
+
     }
     
     private function mergeParams($definition_to_load = null, $params = array())
