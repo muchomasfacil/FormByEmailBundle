@@ -4,7 +4,7 @@ It will help if you need to:
 - send forms by email (even if you use ajax)
 - just send emails, setting sender and recipient data in an easy way
 
-Here you have some [examples](./Resources/docs/examples).
+Here you have some [examples](./Resources/doc/examples).
 
 Fell free to send us your opinion, or issues.
 
