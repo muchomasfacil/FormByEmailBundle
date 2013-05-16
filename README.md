@@ -2,9 +2,9 @@
 Nothing new under the sun. This bundle just tryes to simplify sending your Symfony2 forms by email.
 It will help if you need to:
 - send forms by email (even if you use ajax)
-- just send emails in an easy way
+- just send emails, setting sender and recipient data in an easy way
 
-Here you have some [example](./examples)
+Here you have some [examples](./examples).
 
 Fell free to send us your opinion, or issues.
 
@@ -46,7 +46,7 @@ mucho_mas_facil_form_by_email:
             template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.html.twig
             is_html: true        
             recipients_setBcc: [{ info@mycompany.com: 'My company info'}, mypersonal@gmail.com: 'My personal mail'}]
-        # create your custom
+        # create your custom definitions
         my_txt_contact: 
             template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig
             is_html: false
