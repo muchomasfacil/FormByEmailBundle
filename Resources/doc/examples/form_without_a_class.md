@@ -45,7 +45,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
         //    return $this->redirect($this->generateUrl(...your success url...));
         //}
         return $this->render('YourBundle:Default:contact.html.twig', array('flash' => $flash, 'form_view' => $form_view));
-    }```
+    }
+```
 
 In your view template
 ``` twig
