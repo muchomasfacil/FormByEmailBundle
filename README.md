@@ -159,6 +159,7 @@ Take a look at default values in [./Resources/config/services.yml](./Resources/c
 </table>
 
 ## TODO
-Tests
-Publish on packagist, updating documentation
-Travis integration?
+- test if comunity finds it useful
+- Tests
+- Publish on packagist, updating documentation
+- Travis integration
