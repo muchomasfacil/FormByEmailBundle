@@ -6,6 +6,7 @@ Nothing new under the sun. This bundle just tryes to simplify sending your Symfo
 It will help if you need to:
 - send forms by email (even if you use ajax forms)
 - just send emails
+
 setting sender and recipient and other data in an easy way
 
 Here you have some [examples](./Resources/doc/examples).
