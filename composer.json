@@ -1,7 +1,7 @@
 {
     "name": "muchomasfacil/FormByEmailBundle",
     "type": "symfony-bundle",
-    "description": "Send your symfony2 forms by email easily",
+    "description": "Send your symfony2 emails or forms by email easily",
     "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.3.8",
-        "symfony/symfony": ">=2.1"
+        "symfony/symfony": ">=2.3"
     },
 
     "autoload": {
