@@ -89,24 +89,22 @@ class FormByEmail
         $cloned_empty_form = clone $form;
         $cloned_empty_form->setData($empty_form_data);
 
-        if ($request->getMethod() == 'POST') {
-            $form->handleRequest($request);
-            if ($form->isValid()) {                
-                //this returns $result & $flash
-                extract($this->sendBindedformByEmail(null, $form, $subject, null, $params));      
-                $form = $cloned_empty_form;
-            }
-            else if ($form->isSubmitted()){
-                $flash = array('type' => 'error', 'message' =>'error.form_invalid');
-            }
+        $form->handleRequest($request);
+        if ($form->isValid()) {                
+            //this returns $result & $flash
+            extract($this->sendBindedformByEmail(null, $form, $subject, null, $params));      
+            $form = $cloned_empty_form;
         }
+        else if ($form->isSubmitted()){
+            $flash = array('type' => 'error', 'message' =>'error.form_invalid');
+        }
+
 
         return array(
             'result' => $result
             ,'flash' => $flash
             ,'form_view' => $form->createView()            
         );
-
     }
     
     private function mergeParams($definition_to_load = null, $params = array())

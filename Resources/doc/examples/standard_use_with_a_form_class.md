@@ -102,6 +102,7 @@ use MuchoMasFacil\TestBundle\Form\TaskType;
 ```
 
 or minimalistc
+``` php
 // ...
 
     public function indexAction()

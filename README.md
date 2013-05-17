@@ -1,8 +1,12 @@
 # FormByEmailBundle
+
+> Note this bundle works only with symfony >= 2.3.x
+
 Nothing new under the sun. This bundle just tryes to simplify sending your Symfony2 forms by email.
 It will help if you need to:
-- send forms by email (even if you use ajax)
-- just send emails, setting sender and recipient data in an easy way
+- send forms by email (even if you use ajax forms)
+- just send emails
+setting sender and recipient and other data in an easy way
 
 Here you have some [examples](./Resources/doc/examples).
 
@@ -67,7 +71,7 @@ The final configuration used is formed by:
 
 ## Parameters reference
 
-Take a look at default values in (./Resources/config/services.yml)
+Take a look at default values in [./Resources/config/services.yml](./Resources/config/services.yml)
 
 <table>
     <tr>
@@ -154,4 +158,6 @@ Take a look at default values in (./Resources/config/services.yml)
 </table>
 
 ## TODO
-Check everything works as expected
+Tests
+Publish on packagist, updating documentation
+Travis integration?

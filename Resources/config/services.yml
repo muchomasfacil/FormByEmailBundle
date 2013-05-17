@@ -3,6 +3,8 @@ parameters:
     mucho_mas_facil_form_by_email.definitions: 
         default:
             template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.txt.twig                
+            # there is alredy a predefined html template
+            # MuchoMasFacilFormByEmailBundle:Default:formByEmail.html.twig                
             locale: ~
             translation_domain: messages
             skip_fields: [_token]
