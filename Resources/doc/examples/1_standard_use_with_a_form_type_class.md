@@ -10,7 +10,7 @@ mucho_mas_facil_form_by_email:
 
 ```
 
-create your entity (as in http://symfony.com/doc/2.3/book/forms.html)
+create your entity as usual (as in http://symfony.com/doc/2.3/book/forms.html)
 ``` php
 namespace ...;
 
@@ -41,7 +41,31 @@ class Task
 ```
 and add your validation as usual (http://symfony.com/doc/2.3/book/forms.html#form-validation)
 
-In your controller
+Create your form type class as usual
+``` php
+namespace ...;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+
+class TaskType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('task');
+        $builder->add('dueDate', 'date');
+        $builder->add('send', 'submit', array('label'=>'Send'));
+    }
+
+    public function getName()
+    {
+        return 'task';
+    }
+}
+```
+
+And in your controller
+
 ``` php
 // ...
 use Symfony\Component\HttpFoundation\Request;
