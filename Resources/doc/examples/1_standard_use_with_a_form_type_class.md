@@ -1,4 +1,4 @@
-## Standard use
+## Standard use with a form type class
 in your app/config/config.yml configure with your settings, for example:
 ``` yaml
 mucho_mas_facil_form_by_email:
