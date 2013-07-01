@@ -1,9 +1,11 @@
 {
-    "name": "muchomasfacil/FormByEmailBundle",
+    "name": "muchomasfacil/form-by-email-bundle",
     "type": "symfony-bundle",
-    "description": "Send your symfony2 emails or forms by email easily",
+    "description": "Send your symfony2 forms by email, or your custom emails easily",
+    "keywords": ["form","email"],
     "license": "MIT",
     "minimum-stability": "dev",
+    "homepage": "https://github.com/muchomasfacil/FormByEmailBundle",
     "authors": [
         {
             "name": "Alvaro Marcos",
@@ -11,13 +13,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.8",
-        "symfony/symfony": ">=2.3"
+        "php": ">=5.3.3",
+        "symfony/symfony": ">=2.3",
+        "swiftmailer/swiftmailer": ">=4.3, <6.0",
+        "symfony/yaml": "~2.1",
+        "symfony/form": "~2.1"
     },
 
     "autoload": {
         "psr-0": { "MuchoMasFacil\\FormByEmailBundle": "" }
     },
-
     "target-dir": "MuchoMasFacil/FormByEmailBundle"
 }
