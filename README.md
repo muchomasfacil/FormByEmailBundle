@@ -161,5 +161,4 @@ Take a look at default values in [./Resources/config/services.yml](./Resources/c
 ## TODO
 - test if comunity finds it useful
 - Tests
-- Publish on packagist, updating documentation
 - Travis integration
