@@ -14,13 +14,11 @@ Here you have some [examples](./Resources/doc/examples).
 Fell free to send us your opinion, or issues.
 
 ## Install bundle with composer.json
-Add to your composer.json in the repositories (create it if not exist) section:
-
-``` json
-        {
-            "type": "vcs",
-            "url": "git@github.com:muchomasfacil/FormByEmailBundle.git"
-        }
+Add FormByEmailBundle to your composer.json:
+```
+"require": {
+    "muchomasfacil/form-by-email": "0.1.*"
+},
 ```
 
 You must add this entries to your app/AppKernel.php
