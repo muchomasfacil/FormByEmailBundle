@@ -17,7 +17,7 @@ Fell free to send us your opinion, or issues.
 Add FormByEmailBundle to your composer.json:
 ```
 "require": {
-    "muchomasfacil/form-by-email": "0.1.*"
+    "muchomasfacil/form-by-email-bundle": "0.1.*"
 },
 ```
 
