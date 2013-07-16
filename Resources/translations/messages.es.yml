@@ -1,4 +1,4 @@
-success.email_sent: El formulario se envío por mail correctamente
+success.email_sent: El formulario se envió por mail correctamente
 error.email_not_sent: Se produjo un error. Inténtelo más tarde.
 error.send_exception: Se produjo un error en el servidor de correo. Inténtelo más tarde.
 error.form_invalid: Por favor corrija los errores más abajo.
