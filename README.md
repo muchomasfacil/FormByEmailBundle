@@ -48,7 +48,7 @@ mucho_mas_facil_form_by_email:
         default:
             template: MuchoMasFacilFormByEmailBundle:Default:formByEmail.html.twig
             is_html: true        
-            recipients_setBcc: [{ info@mycompany.com: 'My company info'}, mypersonal@gmail.com: 'My personal mail'}]
+            recipients_setBcc: [{ info@mycompany.com: 'My company info', mypersonal@gmail.com: 'My personal mail'}]
         # create your custom definitions
         my_txt_contact: 
             sender_setFrom: { info@yourcompany.com: 'Info yourcompany.com'}            
